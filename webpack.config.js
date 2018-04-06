@@ -3,8 +3,7 @@ const webpack = require('webpack');
 const path = require('path');
 module.exports = {
   entry: {
-  	app: './src/index.js',
-  	vendors: ['jquery']
+  	app: './src/index.js'
   },
   output: {
   	path: path.resolve(__dirname, 'dist'),
@@ -18,15 +17,16 @@ module.exports = {
   		}, 
   		{
   			test: /\.js$/,
-  			use: ['babel-loader']
+  			use: ['babel-loader'],
+        exclude: /node_modules/
   		}
   	]
   },
   devServer: {
-  	contentBase: './dist'
+      contentBase: [path.join(__dirname, 'dist'), path.join(__dirname, 'src/models'), path.join(__dirname, 'src/js/lib')]
   },
   plugins: [
-  	new HtmlWebpackPlugin({template: './src/index.html'})
+  	new HtmlWebpackPlugin({template: './src/index.html', inject: true})
   ],
   devtool:'sourcemap',
   mode: 'production'||'development'
