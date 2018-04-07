@@ -2,9 +2,10 @@ import {mesh} from '../resource/Resource';
 export default class Building {
 
 	buildingGroup = new THREE.Object3D();
-
+	randomGroup = [this.group1.bind(this), this.group2.bind(this), this.group3.bind(this), this.group4.bind(this),this.group5.bind(this)];
 	constructor() {
-		this.group1();
+		const randomLength = this.randomGroup.length;
+		this.randomGroup[Math.floor(Math.random() * randomLength)]();
 	}
 
 	group1() {
@@ -56,18 +57,42 @@ export default class Building {
 		//SM_Building_Shop_05
 		//SM_Building_Shop_3
 		//SM_Building_StoreSmall_Pawn2
+
+		const bigHouse3 = mesh.big_house3.clone();
+		this.buildingGroup.add(bigHouse3);
+
+		const coffee = mesh.coffee_shop.clone();
+		coffee.position.x += 24;
+		this.buildingGroup.add(coffee);
 	}
 
 	group3() {
-
+		const mall = mesh.mall.clone();
+		this.buildingGroup.add(mall);
 	}
 
 	group4() {
+		const gym = mesh.gym.clone();
+		gym.scale.set(1.5, 1.5,1.5)
+		gym.position.x += 4;
+		gym.position.z += 5;
+		this.buildingGroup.add(gym);
+
+		const apartmentSmall = mesh.apartment_small.clone();
+		apartmentSmall.position.x += 24;
+		apartmentSmall.position.z += 5;
+		apartmentSmall.scale.set(1.5,1.5,1.5);
+		this.buildingGroup.add(apartmentSmall);
+
 
 	}
 
 	group5() {
-
+		const station = mesh.station.clone();
+		station.scale.set(1.5, 1.5, 1.5);
+		station.position.x += 7;
+		station.position.z += 9;
+		this.buildingGroup.add(station);
 	}
 
 	group6() {

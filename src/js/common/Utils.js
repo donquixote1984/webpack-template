@@ -11,6 +11,13 @@ export const loadModel = (path, name) => {
 		mtlLoader.load(name + '.mtl', (materials) => {
 			objLoader.setMaterials(materials);
 			objLoader.load(name + '.obj', (obj) => {
+
+				obj.traverse( child => {
+			    	if (child instanceof THREE.Mesh) {
+			        child.castShadow = true;
+			        child.receiveShadow = true;
+			    	}
+				});
 				resolve(obj);
 			});
 		});
